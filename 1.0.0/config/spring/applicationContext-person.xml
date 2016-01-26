@@ -24,7 +24,10 @@
 			<ref bean="personDao"/>
 		</property>
 	</bean>
-	<!--  
+	
 	<bean id="personAction" class="leibniz.hu.oatest.action.PersonAction">
-	</bean>-->
+		<property name="ps">
+			<ref bean="personService"/>
+		</property>
+	</bean>
 </beans>
