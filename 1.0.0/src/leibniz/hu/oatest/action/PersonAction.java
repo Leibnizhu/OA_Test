@@ -8,6 +8,7 @@ import leibniz.hu.oatest.service.PersonService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class PersonAction extends ActionSupport{
+	private static final long serialVersionUID = 6873975613485483013L;
 	private PersonService ps;
 
 	public PersonService getPs() {

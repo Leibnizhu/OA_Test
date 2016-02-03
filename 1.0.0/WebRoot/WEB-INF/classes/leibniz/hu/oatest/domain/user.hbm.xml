@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- user的hibernate映射文件 -->
+	<class name="leibniz.hu.oatest.domain.User" table="user">
+		<!-- 主键 -->
+		<id name="uid" type="java.lang.Long" length="16">
+			<column name="uid"></column>
+			<generator class="increment"></generator>
+		</id>
+		<!-- 其他字段 -->
+		<property name="username" type="java.lang.String" length="16"></property>
+		<property name="password" type="java.lang.String" length="16"></property>
+		<property name="tel" type="java.lang.String" length="16"></property>
+		<property name="gender" type="java.lang.String" length="4"></property>
+		<property name="email" type="java.lang.String" length="32"></property>
+		<!-- 外键 -->
+		<!-- 部门，多对一 -->
+		<many-to-one name="department" class="leibniz.hu.oatest.domain.Department" column="did"></many-to-one>
+		<!-- 岗位，多对多，多对多的中间表 -->
+		<set name="jobs" table="user_job">
+			<!-- 多对多中间表里，对应本表的字段名 -->
+			<key column="uid"></key>
+			<!-- 多对多中间表里，对应另一个表的字段名 -->
+			<many-to-many class="leibniz.hu.oatest.domain.Job" column="jid"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>
