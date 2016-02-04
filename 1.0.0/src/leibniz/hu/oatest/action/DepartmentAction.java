@@ -44,6 +44,26 @@ public class DepartmentAction extends ActionUtil implements ModelDriven<Departme
 	
 	//打开增加部门的页面
 	public String addWeb(){
+		ActionContext.getContext().getValueStack().pop();
 		return addWeb;
+	}
+	
+	//增加部门的实际操作
+	public String add(){
+		this.deptServ.saveDepartment(this.getModel());
+		return jumpAction;
+	}
+	
+	//打开修改部门的页面
+	public String updateWeb(){
+		Department dept = this.deptServ.getDepartmentById(this.getModel().getDid());
+		ActionContext.getContext().getValueStack().push(dept);
+		return updateWeb;
+	}
+	
+	//修改部门的实际业务操作
+	public String update(){
+		this.deptServ.updateDepartment(this.getModel());
+		return jumpAction;
 	}
 }

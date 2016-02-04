@@ -8,6 +8,7 @@
 			<result name="list">WEB-INF/jsp/department/list.jsp</result>
 			<result name="jumpAction" type="redirectAction">departmentAction_listAll.action</result>
 			<result name="addWeb">WEB-INF/jsp/department/add.jsp</result>
+			<result name="updateWeb">WEB-INF/jsp/department/update.jsp</result>
 		</action>
 	</package>
 </struts>

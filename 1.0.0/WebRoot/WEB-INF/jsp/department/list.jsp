@@ -36,10 +36,10 @@
         	<s:iterator value="#deptList">
 				<tr class="TableDetail1 template">
 					<td><s:property value="dname"/></td>
-					<td><s:property value="descript"/></td>
+					<td><s:property value="ddescript"/></td>
 					<td>
 						<s:a action="departmentAction_delete?did=%{did}">删除</s:a>
-						<a href="saveUI.html">修改</a>
+						<s:a action="departmentAction_updateWeb?did=%{did}">修改</s:a>
 					</td>
 				</tr>
 			</s:iterator>
