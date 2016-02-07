@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import leibniz.hu.oatest.domain.Department;
 
-public interface DepartmentService {
+public interface DepartmentService extends GenericService<Department>{
 	//增
 		public void saveDepartment(Department department);
 		//删

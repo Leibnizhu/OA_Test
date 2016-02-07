@@ -19,13 +19,22 @@
 		</property>
 	</bean>
 	
+	<!-- <bean id="gDao" class="leibniz.hu.oatest.dao.impl.GenericDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean> -->
+	
 	<bean id="departmentService" class="leibniz.hu.oatest.service.impl.DepartmentServiceImpl">
 		<property name="departmentDao">
 			<ref bean="departmentDao"/>
 		</property>
+		<!-- <property name="gdao">
+			<ref bean="gDao"/>
+		</property> -->
 	</bean>
 	
-	<bean id="departmentAction" class="leibniz.hu.oatest.action.DepartmentAction">
+	<bean id="departmentAction" class="leibniz.hu.oatest.action.DepartmentAction" scope="prototype">
 		<property name="deptServ">
 			<ref bean="departmentService"/>
 		</property>

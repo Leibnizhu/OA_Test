@@ -6,9 +6,7 @@ import java.util.Collection;
 import leibniz.hu.oatest.dao.DepartmentDao;
 import leibniz.hu.oatest.domain.Department;
 
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-public class DepartmentDaoImpl extends HibernateDaoSupport implements DepartmentDao{
+public class DepartmentDaoImpl extends GenericDaoImpl<Department> implements DepartmentDao{
 
 	@Override
 	public void saveDepartment(Department department) {

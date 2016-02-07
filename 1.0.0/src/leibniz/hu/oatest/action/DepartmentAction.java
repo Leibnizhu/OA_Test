@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import leibniz.hu.oatest.domain.Department;
 import leibniz.hu.oatest.service.DepartmentService;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -31,6 +30,7 @@ public class DepartmentAction extends ActionUtil implements ModelDriven<Departme
 	
 	//显示所有部门
 	public String listAll(){
+//		Collection<Department> deptList = this.deptServ.getAllDepartments();
 		Collection<Department> deptList = this.deptServ.getAllDepartments();
 		ActionContext.getContext().put("deptList", deptList);
 		return list;

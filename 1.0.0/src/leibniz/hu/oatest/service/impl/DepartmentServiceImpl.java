@@ -7,7 +7,7 @@ import leibniz.hu.oatest.dao.DepartmentDao;
 import leibniz.hu.oatest.domain.Department;
 import leibniz.hu.oatest.service.DepartmentService;
 
-public class DepartmentServiceImpl implements DepartmentService{
+public class DepartmentServiceImpl extends GenericServiceImpl<Department>implements DepartmentService{
 	private DepartmentDao departmentDao;
 	public DepartmentDao getDepartmentDao() {
 		return departmentDao;
@@ -28,8 +28,8 @@ public class DepartmentServiceImpl implements DepartmentService{
 	}
 
 	@Override
-	public void updateDepartment(Department ddepartment) {
-		this.departmentDao.updateDepartment(ddepartment);
+	public void updateDepartment(Department department) {
+		this.departmentDao.updateDepartment(department);
 	}
 
 	@Override

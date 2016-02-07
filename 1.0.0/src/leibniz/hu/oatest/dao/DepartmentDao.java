@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import leibniz.hu.oatest.domain.Department;
 
-public interface DepartmentDao {
+public interface DepartmentDao extends GenericDao<Department>{
 	//增
 	public void saveDepartment(Department department);
 	//删
