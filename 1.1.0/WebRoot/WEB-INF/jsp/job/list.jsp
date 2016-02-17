@@ -4,6 +4,8 @@
 <head>
     <title>岗位列表</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/deleteNote.js"></script>
 </head>
 <body>
  
