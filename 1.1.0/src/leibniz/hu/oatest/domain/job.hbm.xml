@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- Job的hibernate映射文件 -->
+	<class name="leibniz.hu.oatest.domain.Job" table="job">
+		<!-- 主键 -->
+		<id name="jid" type="java.lang.Long" length="16">
+			<column name="jid"></column>
+			<generator class="increment"></generator>
+		</id>
+		<!-- 其他字段 -->
+		<property name="jname" type="java.lang.String" length="16"></property>
+		<property name="jdescript" type="java.lang.String" length="64"></property>
+		<!-- 多对多映射 -->
+		<set name="users" table="user_job">
+			<key column="jid"></key>
+			<many-to-many class="leibniz.hu.oatest.domain.User" column="uid"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

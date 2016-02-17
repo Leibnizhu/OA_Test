@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- Person的hibernate映射文件 -->
+	<class name="leibniz.hu.oatest.domain.Person">
+		<!-- 设置主键 -->
+		<id name="pid" type="java.lang.Long" length="10">
+			<generator class="increment"></generator>
+		</id>
+		<!-- 设置其他属性 -->
+		<property name="pname" type="java.lang.String" length="20">
+			<!-- 设置对应的字段名 -->
+			<column name="pname"></column>
+		</property>
+	</class>
+</hibernate-mapping>
