@@ -58,7 +58,7 @@
     
      <div id="TableTail">
         <div id="TableTail_inside">
-            <a href="userAction_addUI.action"><img src="${pageContext.request.contextPath}/css/images/createNew.png" /></a>
+            <a href="userAction_addWeb.action"><img src="${pageContext.request.contextPath}/css/images/createNew.png" /></a>
         </div>
     </div>
     

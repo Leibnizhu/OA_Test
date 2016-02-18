@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/common/common.jsp"%>
-<script language="javascript" src="${pageContext.request.contextPath}/js/user_add.js"></script>
+
 <html>
 <head>
 	<title>用户信息</title>
@@ -37,7 +37,7 @@
                     		listKey   option的属性value的值
                     	 -->
                     	
-                        <td><s:select list="#departmentList" listKey="did" listValue="dname" headerKey="" headerValue="请选择部门" name="did" cssClass="SelectStyle"></s:select>
+                        <td><s:select headerKey="" headerValue="请选择部门"  cssClass="SelectStyle"></s:select>
                         </td>
                     </tr>
                     <tr><td>用户名</td>
@@ -46,7 +46,7 @@
 						</td>
                     </tr>
 					<tr><td>性别</td>
-                        <td><s:radio name="sex" list="{'男','女'}"/>
+                        <td><s:radio />
 						</td>
                     </tr>
 					<tr><td>联系电话</td>
@@ -70,7 +70,7 @@
                     <tr>
 						<td width="100">岗位</td>
 						
-                        <td><s:select list="#postList" name="pids" listKey="pid" listValue="pname" cssClass="SelectStyle"  multiple="true" size="10"></s:select>
+                        <td><s:select cssClass="SelectStyle"  size="10"></s:select>
                             按住Ctrl键可以多选或取消选择
                         </td>
                     </tr>
