@@ -57,6 +57,15 @@ public class UserAction extends ActionUtil<User>implements ModelDriven<User>{
 		return list;
 	}
 	
+	//删除指定用户
+	public String delete(){
+		//从模型驱动获取User一般属性，从而查询到User对象
+		User user = this.userServ.getElementById(this.getModel().getUid());
+		//在数据库中删除
+		this.userServ.deleteElement(user);
+		return jumpAction;
+	}
+	
 	//显示增加用户的页面
 	//页面需要提供可选的部门和岗位，所以要查询这两个表的信息
 	public String addWeb(){
@@ -90,8 +99,8 @@ public class UserAction extends ActionUtil<User>implements ModelDriven<User>{
 		User user = this.userServ.getElementById(this.getModel().getUid());
 		ActionContext.getContext().getValueStack().push(user);
 		//准备页面的岗位和部门回显id
-		this.did = this.getModel().getDepartment().getDid();
-		Set<Job> jobs = this.getModel().getJobs();
+		this.did = user.getDepartment().getDid();
+		Set<Job> jobs = user.getJobs();
 		this.jids = new Long[jobs.size()];
 		int i = 0;
 		for(Job job : jobs){
