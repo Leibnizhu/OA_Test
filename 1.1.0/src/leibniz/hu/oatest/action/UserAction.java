@@ -1,10 +1,15 @@
 package leibniz.hu.oatest.action;
 
 import java.util.Collection;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
+import leibniz.hu.oatest.domain.Department;
+import leibniz.hu.oatest.domain.Job;
 import leibniz.hu.oatest.domain.User;
+import leibniz.hu.oatest.service.DepartmentService;
+import leibniz.hu.oatest.service.JobService;
 import leibniz.hu.oatest.service.UserService;
 
 import org.springframework.context.annotation.Scope;
@@ -57,7 +62,7 @@ public class UserAction extends ActionUtil<User>implements ModelDriven<User>{
 	public String addWeb(){
 		Collection<Department> deptList = this.deptServ.getAllElements();
 		ActionContext.getContext().put("deptList", deptList);
-		Collection<Job> jobList = this.deptServ.getAllElements();
+		Collection<Job> jobList = this.jobServ.getAllElements();
 		ActionContext.getContext().put("jobList", jobList);
 		return addWeb;
 	}
@@ -83,10 +88,10 @@ public class UserAction extends ActionUtil<User>implements ModelDriven<User>{
 	public String updateWeb(){
 		//准备用户的基本属性，放入值栈
 		User user = this.userServ.getElementById(this.getModel().getUid());
-		ActionContext.getContext().push(user);
+		ActionContext.getContext().getValueStack().push(user);
 		//准备页面的岗位和部门回显id
-		this.did = this.user.getDepartment().getDid();
-		Set<Job> jobs = this.user.getJobs();
+		this.did = this.getModel().getDepartment().getDid();
+		Set<Job> jobs = this.getModel().getJobs();
 		this.jids = new Long[jobs.size()];
 		int i = 0;
 		for(Job job : jobs){
@@ -94,7 +99,7 @@ public class UserAction extends ActionUtil<User>implements ModelDriven<User>{
 		}
 		//准备所有的岗位和部门信息放入对象栈
 		Collection<Department> deptList = this.deptServ.getAllElements();
-		Collection<Job> jobList = this.deptServ.getAllElements();
+		Collection<Job> jobList = this.jobServ.getAllElements();
 		ActionContext.getContext().put("deptList", deptList);
 		ActionContext.getContext().put("jobList", jobList);
 		return updateWeb;
