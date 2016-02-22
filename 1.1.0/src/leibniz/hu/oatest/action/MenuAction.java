@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.json.annotations.JSON;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -24,9 +25,15 @@ public class MenuAction extends ActionUtil<Menu>{
 		return menuList;
 	}
 	
+	@JSON(serialize=false)
 	public String getAllMenus(){
 		this.menuList = this.menuServ.getAllElements();
 		return SUCCESS;
 	}
 
+	@JSON(serialize=false)
+	public String getMenusByPid(){
+		this.menuList = this.menuServ.getMenusByPid(this.getModel().getPid());
+		return SUCCESS;
+	}
 }

@@ -13,7 +13,7 @@ public class MenuDaoImpl extends GenericDaoImpl<Menu> implements MenuDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Menu> getMenusByPid(Long pid) {
-		return (Collection<Menu>)(this.getHibernateTemplate().find("menu where pid = ?", pid));
+		return (Collection<Menu>)(this.getHibernateTemplate().find("from Menu where pid = ?", pid));
 	}
 
 }
