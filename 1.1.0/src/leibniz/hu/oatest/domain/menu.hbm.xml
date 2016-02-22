@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- menu的hibernate映射文件 -->
+	<class name="leibniz.hu.oatest.domain.Menu" table="menu">
+		<!-- 主键 -->
+		<id name="mid" type="java.lang.Long" length="8">
+			<column name="mid" ></column>
+			<generator class="assigned"></generator>
+		</id>
+		<!-- 其他字段 -->
+		<property name="pid" type="java.lang.Long" length="8"></property>
+		<property name="mname" type="java.lang.String" length="32"></property>
+		<property name="isParent" type="java.lang.Boolean"></property>
+		<property name="icon" type="java.lang.String" length="128"></property>
+		<property name="isChecked" type="java.lang.Boolean"></property>
+		<!-- 多对多关系-->
+		<set name="users" table="user_menu">
+			<!-- 多对多关系中，本表对应的字段 -->
+			<key>
+				<column name="mid"></column>
+			</key>
+			<many-to-many class="leibniz.hu.oatest.domain.User" column="uid"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

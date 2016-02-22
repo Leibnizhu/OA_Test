@@ -11,7 +11,9 @@
 		org.hibernate.dialect.MySQLDialect
 	</property>
 	<!-- ?useUnicode=true&amp;amp;characterEncoding=UTF-8 -->
-	<property name="connection.url">jdbc:mysql://192.168.0.104:3306/oatest?useUnicode=true&amp;characterEncoding=UTF-8</property>
+	<property name="connection.url">
+		jdbc:mysql://192.168.56.101:3306/oatest?useUnicode=true&amp;characterEncoding=UTF-8
+	</property>
 	<property name="connection.username">root</property>
 	<property name="connection.password">1111</property>
 	<property name="connection.driver_class">
@@ -25,6 +27,7 @@
 	<mapping resource="leibniz/hu/oatest/domain/department.hbm.xml" />
 	<mapping resource="leibniz/hu/oatest/domain/user.hbm.xml" />
 	<mapping resource="leibniz/hu/oatest/domain/job.hbm.xml" />
+	<mapping resource="leibniz/hu/oatest/domain/menu.hbm.xml" />
 </session-factory>
 
 </hibernate-configuration>

@@ -10,4 +10,5 @@
    <include file="struts2/struts-person.xml"/>
    <include file="struts2/struts-department.xml"/>
    <include file="struts2/struts-job.xml"/>
+   <include file="struts2/struts-user.xml"/>
 </struts>	

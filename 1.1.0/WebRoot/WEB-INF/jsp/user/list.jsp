@@ -48,7 +48,7 @@
 					</td>
 	                <td>
 	                	<s:a action="userAction_delete?uid=%{uid}">删除</s:a>
-	                    <s:a action="userAction_updateUI?uid=%{uid}">修改</s:a>
+	                    <s:a action="userAction_updateWeb?uid=%{uid}">修改</s:a>
 						<a href="javascript:privilegeclick();">设置权限</a>
 	                </td>
 	            </tr>

@@ -38,7 +38,7 @@
                     		listKey   option的属性value的值
                     	 -->
                     	
-                        <td><s:select list="#departmentList" listKey="did" listValue="dname" headerKey="" headerValue="请选择部门" name="did" cssClass="SelectStyle"></s:select>
+                        <td><s:select list="#deptList" listKey="did" listValue="dname" headerKey="" headerValue="请选择部门" name="did" cssClass="SelectStyle"></s:select>
                         </td>
                     </tr>
                     <tr><td>用户名</td>
@@ -47,11 +47,11 @@
 						</td>
                     </tr>
 					<tr><td>性别</td>
-                        <td><s:radio name="sex" list="{'男','女'}"/>
+                        <td><s:radio name="gender" list="{'男','女'}"/>
 						</td>
                     </tr>
 					<tr><td>联系电话</td>
-                        <td><s:textfield name="phone" cssClass="InputStyle"></s:textfield></td>
+                        <td><s:textfield name="tel" cssClass="InputStyle"></s:textfield></td>
                     </tr>
                     <tr><td>E-mail</td>
                         <td><s:textfield name="email" cssClass="InputStyle"></s:textfield></td>
@@ -71,7 +71,7 @@
                     <tr>
 						<td width="100">岗位</td>
 						
-                        <td><s:select list="#postList" name="pids" listKey="pid" listValue="pname" cssClass="SelectStyle"  multiple="true" size="10"></s:select>
+                        <td><s:select list="#jobList" name="jids" listKey="jid" listValue="jname" cssClass="SelectStyle"  multiple="true" size="10"></s:select>
                             按住Ctrl键可以多选或取消选择
                         </td>
                     </tr>
