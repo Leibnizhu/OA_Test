@@ -2,6 +2,8 @@ package leibniz.hu.oatest.domain;
 
 import java.util.Set;
 
+import org.apache.struts2.json.annotations.JSON;
+
 public class Menu {
 	//数据库自身字段
 	//menu Id
@@ -69,6 +71,7 @@ public class Menu {
 		this.isChecked = isChecked;
 	}
 
+	@JSON(serialize=false)
 	public Set<User> getUsers() {
 		return users;
 	}

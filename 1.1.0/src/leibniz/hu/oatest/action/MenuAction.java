@@ -25,6 +25,14 @@ public class MenuAction extends ActionUtil<Menu>{
 		return menuList;
 	}
 	
+	private Long uid;
+	public Long getUid() {
+		return uid;
+	}
+	public void setUid(Long uid) {
+		this.uid = uid;
+	}
+
 	@JSON(serialize=false)
 	public String getAllMenus(){
 		this.menuList = this.menuServ.getAllElements();
@@ -34,6 +42,12 @@ public class MenuAction extends ActionUtil<Menu>{
 	@JSON(serialize=false)
 	public String getMenusByPid(){
 		this.menuList = this.menuServ.getMenusByPid(this.getModel().getPid());
+		return SUCCESS;
+	}
+	
+	@JSON(serialize=false)
+	public String getMenusByUid(){
+		this.menuList = this.menuServ.getMenusByUid(this.uid);
 		return SUCCESS;
 	}
 }

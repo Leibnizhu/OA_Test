@@ -14,7 +14,14 @@ public class User {
 	//用于Hibernate映射的成员属性
 	private Department department;
 	private Set<Job> jobs;
+	private Set<Menu> menus;
 	
+	public Set<Menu> getMenus() {
+		return menus;
+	}
+	public void setMenus(Set<Menu> menus) {
+		this.menus = menus;
+	}
 	public String getEmail() {
 		return email;
 	}

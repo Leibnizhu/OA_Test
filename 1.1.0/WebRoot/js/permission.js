@@ -35,11 +35,14 @@ var permission = {
 			//权限树全选按钮的点击事件
 			$("#allchecked").unbind("click");
 			$("#allchecked").bind("click", function(){
-				//permission.permFunc.
+				permission.permFunc.permissionTree.checkAll.call(this);
 			});
 			
 			//保存权限按钮的点击事件
-			
+			$("#savePermTree").unbind("click");
+			$("#savePermTree").bind("click", function(){
+				permission.permFunc.permissionTree.savePermTree();
+			});
 		}
 	},
 	
@@ -49,12 +52,14 @@ var permission = {
 		showUserInfo : function(){
 			$("#userImage").text(permission.data.user.username);
 		},
+		
 		//显示所有隐藏的div
 		showDiv : function(){
 			$("#userTitle").show();
 			$("#privilegeTitle").show();
 			$("#privilegeContent").show();
 		},
+		
 		permissionTree : {
 			zTree : '',
 			//zTree的设置
@@ -64,6 +69,7 @@ var permission = {
 		        treeNodeParentKey: "pid",
 		        showLine: true,
 		        nameCol:"mname",
+		        checkedCol: "isChecked",
 		        root: {
 		            isRoot: true,
 		            nodes: []
@@ -73,25 +79,47 @@ var permission = {
 		        	//点击复选框后，判断是否全选，若全选则全选按钮选中；
 		        	//否则全选按钮为未选中状态
 		        	change : function(treeId, treeNode){
-		        		
+		        		//通过getCheckedNodes(false)获取没被选中的复选框
+						//如果不为空，即有未选中的，全选复选框不选中
+						if(permission.permFunc.permissionTree.zTree.getCheckedNodes(false).length != 0){
+							$("#allchecked").attr("checked",false);
+						} else {
+							//返回空，则没有未选中的，即已全选，则使全选复选框选中
+							$("#allchecked").attr("checked", true);
+						}
 		        	}
 		        }
 			},
+			
 			//加载权限树
 			loadPermTree : function(){
-				$.post("menuAction_getAllMenus.action", null, function(data){
+				$.post("menuAction_getMenusByUid.action", {uid : permission.data.user.uid}, function(data){
 					//将data中的权限树数据加载到权限树的ul元素中
 					permission.permFunc.permissionTree.zTree = $("#permissionTree").zTree(permission.permFunc.permissionTree.setting, data.menuList);
 					//随后判断是否应该选中全选复选框
 					//通过getCheckedNodes(false)获取没被选中的复选框
 					//如果不为空，即有未选中的，全选复选框不选中
-					if(permission.permFunc.permissionTree.zTree.getCheckedNodes(false)){
+					if(permission.permFunc.permissionTree.zTree.getCheckedNodes(false).length != 0){
 						$("#allchecked").attr("checked",false);
 					} else {
 						//返回空，则没有未选中的，即已全选，则使全选复选框选中
 						$("#allchecked").attr("checked", true);
 					}
 				});
+			},
+			
+			//全选按钮的动作
+			checkAll : function(){
+				if($(this).attr("checked")){
+					permission.permFunc.permissionTree.zTree.checkAllNodes(true);
+				} else {
+					permission.permFunc.permissionTree.zTree.checkAllNodes(false);
+				}
+			},
+			
+			//保存权限树的内容(选择情况)
+			savePermTree : function(){
+				alert("保存权限树的内容");
 			}
 		}
 	},

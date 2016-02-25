@@ -24,4 +24,9 @@ public class MenuServiceImpl extends GenericServiceImpl<Menu> implements MenuSer
 		return ((MenuDao)this.dao).getMenusByPid(pid);
 	}
 
+	@Override
+	public Collection<Menu> getMenusByUid(Long uid) {
+		return ((MenuDao)this.dao).getMenusByUid(uid);
+	}
+
 }

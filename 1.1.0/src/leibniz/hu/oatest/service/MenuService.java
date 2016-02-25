@@ -6,4 +6,5 @@ import leibniz.hu.oatest.domain.Menu;
 
 public interface MenuService extends GenericService<Menu>{
 	public Collection<Menu> getMenusByPid(Long pid);
+	public Collection<Menu> getMenusByUid(Long uid);
 }

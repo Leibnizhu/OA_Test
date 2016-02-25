@@ -102,7 +102,7 @@
         </div>
         <!-- 表单操作 -->
         <div id="InputDetailBar">
-            <image onclick="savePrivilege()" src="${pageContext.request.contextPath}/css/images/save.png"/>
+            <image id="savePermTree" src="${pageContext.request.contextPath}/css/images/save.png"/>
         </div>
 </div>
 
