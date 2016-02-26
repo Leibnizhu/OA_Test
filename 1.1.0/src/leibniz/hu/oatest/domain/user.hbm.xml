@@ -26,5 +26,12 @@
 			<!-- 多对多中间表里，对应另一个表的字段名 -->
 			<many-to-many class="leibniz.hu.oatest.domain.Job" column="jid"></many-to-many>
 		</set>
+		<!--  菜单，多对多-->
+		<set name="menus" table="user_menu">
+			<key>
+				<column name="uid"></column>
+			</key>
+			<many-to-many class="leibniz.hu.oatest.domain.Menu" column="mid"></many-to-many>
+		</set>
 	</class>
 </hibernate-mapping>
