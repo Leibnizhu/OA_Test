@@ -1,6 +1,9 @@
 package leibniz.hu.oatest.dao.impl;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -48,6 +51,26 @@ public class MenuDaoImpl extends GenericDaoImpl<Menu> implements MenuDao{
 			}
 		}
 		return menuList;
+	}
+	
+	
+	public Set<Menu> getMenusByIds(Long[] ids){
+		//根据id数组拼接成SQL/HQL查询语句
+		StringBuffer sbSql = new StringBuffer();
+		sbSql.append("from Menu where mid in (");
+		for(int i = 0; i < ids.length; i++){
+			sbSql.append(ids[i]);
+			if(i != ids.length - 1){
+				sbSql.append(",");
+			}
+		}
+		sbSql.append(")");
+		System.out.println(sbSql.toString());
+		//通过HibernateTemplate查询
+		@SuppressWarnings("unchecked")
+		List<Menu> menuList = this.getHibernateTemplate().find(sbSql.toString());
+		//通过Map去掉重复项
+		return new HashSet<Menu>(menuList);
 	}
 
 }

@@ -105,6 +105,7 @@ var permission = {
 						//返回空，则没有未选中的，即已全选，则使全选复选框选中
 						$("#allchecked").attr("checked", true);
 					}
+					permission.permFunc.permissionTree.zTree.expandAll(true);
 				});
 			},
 			
@@ -119,7 +120,23 @@ var permission = {
 			
 			//保存权限树的内容(选择情况)
 			savePermTree : function(){
-				alert("保存权限树的内容");
+				//alert("保存权限树的内容");
+				//先将当前选中的复选框拼接成字符串
+				var checkedNodes = permission.permFunc.permissionTree.zTree.getCheckedNodes(true);
+				var mids = "";
+				for(var i =0; i < checkedNodes.length; i++){
+					mids = mids + checkedNodes[i].mid;
+					if(i < checkedNodes.length -1){
+						//如果不是最后一个，则加上逗号区分
+						mids = mids + ",";
+					}
+				}
+				//ajax发出数据
+				$.post("menuAction_savePermission.action",
+							{ uid : permission.data.user.uid,mids : mids},
+							function(data){
+								alert("保存成功");
+							});
 			}
 		}
 	},

@@ -1,6 +1,7 @@
 package leibniz.hu.oatest.service.impl;
 
 import java.util.Collection;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -27,6 +28,11 @@ public class MenuServiceImpl extends GenericServiceImpl<Menu> implements MenuSer
 	@Override
 	public Collection<Menu> getMenusByUid(Long uid) {
 		return ((MenuDao)this.dao).getMenusByUid(uid);
+	}
+
+	@Override
+	public Set<Menu> getMenusByIds(Long[] ids) {
+		return ((MenuDao)this.dao).getMenusByIds(ids);
 	}
 
 }
