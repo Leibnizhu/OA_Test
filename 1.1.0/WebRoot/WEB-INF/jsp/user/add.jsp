@@ -46,6 +46,10 @@
 							（登录名要唯一）
 						</td>
                     </tr>
+					<tr><td>密码</td>
+                        <td><s:password name="password" cssClass="InputStyle"/>
+						</td>
+                    </tr>
 					<tr><td>性别</td>
                         <td><s:radio name="gender" list="{'男','女'}"/>
 						</td>

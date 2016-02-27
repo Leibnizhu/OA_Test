@@ -9,6 +9,8 @@
 			<result name="jumpAction" type="redirectAction">userAction_listAll.action</result>
 			<result name="addWeb">WEB-INF/jsp/user/add.jsp</result>
 			<result name="updateWeb">WEB-INF/jsp/user/update.jsp</result>
+			<result name="login">index.jsp</result>
+			<result name="index">WEB-INF/jsp/frame/main.jsp</result>
 		</action>
 	</package>
 </struts>

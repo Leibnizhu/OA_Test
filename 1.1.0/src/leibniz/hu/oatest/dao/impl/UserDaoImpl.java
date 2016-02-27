@@ -17,4 +17,16 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao{
 		List<User> userList = this.getHibernateTemplate().find(sql);
 		return new HashSet<User>(userList);
 	}
+
+	@Override
+	public User getUserByNameNPswd(String username, String password) {
+		String sql = "from User u where u.username=? and u.password=?";
+		@SuppressWarnings("unchecked")
+		List<User> userList = this.getHibernateTemplate().find(sql, new Object[]{username, password});
+		if(userList.size() != 0){
+			return userList.get(0);
+		} else {
+			return null;
+		}
+	}
 }

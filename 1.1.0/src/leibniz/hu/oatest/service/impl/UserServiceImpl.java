@@ -22,4 +22,9 @@ public class UserServiceImpl extends GenericServiceImpl<User> implements UserSer
 	public Collection<User> getAllUsers() {
 		return ((UserDao)this.dao).getAllUsers();
 	}
+
+	@Override
+	public User getUserByNameNPswd(String username, String password) {
+		return ((UserDao)this.dao).getUserByNameNPswd(username, password);
+	}
 }
