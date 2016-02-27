@@ -68,7 +68,7 @@ public class MenuAction extends ActionUtil<Menu>{
 	
 	@JSON(serialize=false)
 	public String getMenusByCurUser(){
-		this.menuList = this.menuServ.getMenusByUid(OaUtils.getUserFromSession().getUid());
+		this.menuList = this.menuServ.getMenusByUser(OaUtils.getUserFromSession());
 		return SUCCESS;
 	}
 	

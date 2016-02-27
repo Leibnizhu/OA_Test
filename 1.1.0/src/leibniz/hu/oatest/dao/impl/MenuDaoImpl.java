@@ -73,4 +73,14 @@ public class MenuDaoImpl extends GenericDaoImpl<Menu> implements MenuDao{
 		return new HashSet<Menu>(menuList);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<Menu> getMenusByUser(User user) {
+		if("admin".equals( user.getUsername())){
+			return this.getAllElements();
+		} else {
+			return (Collection<Menu>)(this.getHibernateTemplate().find("from Menu m inner join fetch  m.users u where u.uid=?", user.getUid()));
+		}
+	}
+
 }

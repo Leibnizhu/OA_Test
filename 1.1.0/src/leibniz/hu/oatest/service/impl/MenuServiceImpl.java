@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import leibniz.hu.oatest.dao.GenericDao;
 import leibniz.hu.oatest.dao.MenuDao;
 import leibniz.hu.oatest.domain.Menu;
+import leibniz.hu.oatest.domain.User;
 import leibniz.hu.oatest.service.MenuService;
 
 import org.springframework.stereotype.Service;
@@ -33,6 +34,11 @@ public class MenuServiceImpl extends GenericServiceImpl<Menu> implements MenuSer
 	@Override
 	public Set<Menu> getMenusByIds(Long[] ids) {
 		return ((MenuDao)this.dao).getMenusByIds(ids);
+	}
+
+	@Override
+	public Collection<Menu> getMenusByUser(User user) {
+		return ((MenuDao)this.dao).getMenusByUser(user);
 	}
 
 }

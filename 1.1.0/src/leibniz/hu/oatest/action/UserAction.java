@@ -144,4 +144,10 @@ public class UserAction extends ActionUtil<User>implements ModelDriven<User>{
 			return "index";
 		}
 	}
+	
+	public String logout(){
+		ServletActionContext.getRequest().getSession().removeAttribute("errorMsg");
+		ServletActionContext.getRequest().getSession().removeAttribute("user");
+		return "login";
+	}
 }

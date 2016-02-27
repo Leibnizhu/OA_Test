@@ -30,7 +30,7 @@
 		</div>
 		
         <div id="Head1Right_SystemButton">
-            <a target="_parent" href="System_User/logout.html">
+            <a target="_top" href="userAction_logout.action">
 				<img width="78" height="20" alt="退出系统" src="css/blue/images/top/logout.gif" />
 			</a>
         </div>
