@@ -3,12 +3,9 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
 	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
 <struts>
-	<package name="job" namespace="/" extends="struts-default">
-		<action name="jobAction_*" method="{1}" class="jobAction">
-			<result name="list">WEB-INF/jsp/job/list.jsp</result>
-			<result name="jumpAction" type="redirectAction">jobAction_listAll.action</result>
-			<result name="addWeb">WEB-INF/jsp/job/add.jsp</result>
-			<result name="updateWeb">WEB-INF/jsp/job/update.jsp</result>
+	<package name="menu" namespace="/" extends="json-default">
+		<action name="menuAction_*" method="{1}" class="menuAction">
+			<result  type="json"></result>
 		</action>
 	</package>
 </struts>

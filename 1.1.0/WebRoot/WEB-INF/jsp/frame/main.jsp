@@ -5,7 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <html>
 <head>
-<title>ItcastOA</title>
+<title>OA_Test</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <frameset rows="100,*,25" framespacing="0" border="0" frameborder="0">

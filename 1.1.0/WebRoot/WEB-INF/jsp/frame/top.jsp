@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jsp/common/common.jsp"%>
 <html>
 <head>
     <title>Top</title>
@@ -11,13 +12,13 @@
 	<div id="Head1">
 		<div id="Logo">
 			<a id="msgLink" href="javascript:void(0)"></a>
-            <font color="#0000CC" style="color:#F1F9FE; font-size:28px; font-family:Arial Black, Arial">Itcast OA</font> 
+            <font color="#0000CC" style="color:#F1F9FE; font-size:28px; font-family:Arial Black, Arial">OA_Test</font> 
 			<!--<img border="0" src="style/blue/images/logo.png" />-->
         </div>
 		
 		<div id="Head1Right">
 			<div id="Head1Right_UserName">
-                <img border="0" width="13" height="14" src="css/images/top/user.gif" /> 您好，<b>管理员</b>
+                <img border="0" width="13" height="14" src="css/images/top/user.gif" /> 您好，<b><s:property value="#session.user.username"/> </b>
 			</div>
 			<div id="Head1Right_UserDept"></div>
 			<div id="Head1Right_UserSetup">
@@ -59,12 +60,12 @@
 				  <!-- 是否有待审批文档的提示1，数量 -->
                 <li><a href="Flow_Formflow/myTaskList.html" target="desktop">
                 		<img border="0" width="12" height="14" src="css/images/top/wait.gif" /> 
-                		待办事项（<span id="wait" class="taskListSize">1</span>）
+                		待办事项（<span id="wait" class="taskListSize">0</span>）
                 	</a>
                 </li>
 				  
                 <!-- 是否有待审批文档的提示2，提示审批 -->
-                <li id="messageArea">您有 1 个待审批文档，请及时审批！★★★★★</li>
+                <li id="messageArea"><s:property value="#session.docMsg"></s:property></li>
             </ul>
         </div>
         
