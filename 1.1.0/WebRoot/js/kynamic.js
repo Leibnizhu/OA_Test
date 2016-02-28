@@ -154,13 +154,13 @@ var kynamic = {
 			var nodeName = window.prompt(addJson.inputMsg);
 			if(null != nodeName && "" != nodeName){
 				//发出ajax请求判断是否重名
-				$.post("kynamicAction_isNameExists", {kname : nodeName}, function(data){
+				$.post("kynamicAction_isNameExists.action", {kname : nodeName}, function(data){
 					if(data.returnMsg == "0"){
 						//存在重名
 						alert("存在重名，请重新输入");
 					} else {
 						//没有重名，可以新增节点，提交ajax请求
-						$.post("kynamicAction_addKynamic",
+						$.post("kynamicAction_addKynamic.action",
 							{
 								kname : nodeName,
 								isParent : addJson.isParent,
@@ -218,7 +218,34 @@ var kynamic = {
 		
 		//修改文件节点
 		updateFile: function(){
-			alert("updateFile");
+			//alert("updateFile");
+			//通过系统提示框获得输入的节点名
+			var newName = window.prompt("请输入新名字：");
+			if(null != newName && "" != newName){
+				//发出ajax请求判断是否重名
+				$.post("kynamicAction_isNameExists.action", {kname : newName}, function(data){
+					if(data.returnMsg == "0"){
+						//存在重名
+						alert("存在重名，请重新输入");
+					} else {
+						//没有重名，可以新增节点，提交ajax请求
+						$.post("kynamicAction_updateKynamic.action",
+							{
+								kname : newName,
+								kid : kynamic.kynamicTree.pNode.kid
+							},
+							function(data2){
+								//回调，修改当前节点名字
+								kynamic.kynamicTree.pNode.kname = newName;
+								kynamic.kynamicTree.zTree.refresh();
+							}
+						);
+					}
+				});
+			} else {
+				//输入节点名为空，提示错误
+				alert("输入名字不能为空");
+			}
 		}
 	},
 	//版本

@@ -63,4 +63,12 @@ public class KynamicAction extends ActionUtil<Kynamic>{
 		this.returnMsg = "操作成功";
 		return SUCCESS;
 	}
+	
+	public String updateKynamic(){
+		//因为是只更新名字，其他不变，所以先查询出来再修改
+		Kynamic kynamic = this.kynamicServ.getElementById(this.getModel().getKid());
+		kynamic.setKname(this.getModel().getKname());
+		this.kynamicServ.updateElement(kynamic);
+		return SUCCESS;
+	}
 }
