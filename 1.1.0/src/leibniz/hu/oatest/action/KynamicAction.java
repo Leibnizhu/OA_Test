@@ -57,4 +57,10 @@ public class KynamicAction extends ActionUtil<Kynamic>{
 		this.returnMsg = "操作成功";
 		return SUCCESS;
 	}
+	
+	public String deleteKynamic(){
+		this.kynamicServ.deleteElement(this.kynamicServ.getElementById(this.getModel().getKid()));
+		this.returnMsg = "操作成功";
+		return SUCCESS;
+	}
 }

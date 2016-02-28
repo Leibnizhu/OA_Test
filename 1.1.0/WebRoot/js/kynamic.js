@@ -30,9 +30,7 @@ var kynamic = {
 	            nodes: []
 	        },
 	      //通过setting中的keep.parent，在删除所有子节点之后父节点保持isParent属性
-	        keep : {
-	        	parent : true
-	        },
+	        keepParent : true,
 	        callback:{
 	        	//知识树的右击事件，
 	        	rightClick : function(event, treeid, treeNode){
@@ -194,12 +192,22 @@ var kynamic = {
 			//alert("deleteFile");
 			//判断当前节点是否文件夹节点
 			if(kynamic.kynamicTree.pNode.isParent){
-				
+				if(kynamic.kynamicTree.zTree.getNodeByParam("pid", kynamic.kynamicTree.pNode.kid)){
+					//查询pid为当前点击节点的kid的节点，即当前节点的子节点，若不为空，则不能删除
+					alert("当前文件夹不为空，不能直接删除！");
+				} else {
+					//没有子节点，可以删除，发出ajax请求删除节点
+					$.post("kynamicAction_deleteKynamic.action", {kid : kynamic.kynamicTree.pNode.kid}, function(data){
+						//通过setting中的keep.parent，在删除所有子节点之后父节点保持isParent属性
+						kynamic.kynamicTree.zTree.removeNode(kynamic.kynamicTree.pNode);
+						alert(data.returnMsg);
+					});
+				}
 			} else {
 				//文件节点则提示是否删除
 				if(window.confirm("确认删除？")){
 					//发出ajax请求删除节点
-					$.post("kynamicAction_deleteKynamic.action", {kid : kynamic.kynamicTree.pNode}, function(data){
+					$.post("kynamicAction_deleteKynamic.action", {kid : kynamic.kynamicTree.pNode.kid}, function(data){
 						//通过setting中的keep.parent，在删除所有子节点之后父节点保持isParent属性
 						kynamic.kynamicTree.zTree.removeNode(kynamic.kynamicTree.pNode);
 						alert(data.returnMsg);
