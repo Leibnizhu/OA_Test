@@ -13,4 +13,5 @@
    <include file="struts2/struts-user.xml"/>
    <include file="struts2/struts-forward.xml"/>
    <include file="struts2/struts-menu.xml"/>
+   <include file="struts2/struts-kynamic.xml"/>
 </struts>	

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- menu的hibernate映射文件 -->
+	<class name="leibniz.hu.oatest.domain.Kynamic" table="kynamic">
+		<!-- 主键 -->
+		<id name="kid" type="java.lang.Long" length="8">
+			<column name="kid" ></column>
+			<generator class="increment"></generator>
+		</id>
+		<!-- 其他字段 -->
+		<property name="pid" type="java.lang.Long" length="8"></property>
+		<property name="kname" type="java.lang.String" length="32"></property>
+		<property name="isParent" type="java.lang.Boolean"></property>
+		
+		<!-- 一对多关系，由多的一方维护，在此不维护-->
+		<set name="versions" inverse="true">
+			<key>
+				<column name="kid"></column>
+			</key>
+			<one-to-many class="leibniz.hu.oatest.domain.Version"/>
+		</set>
+	</class>
+</hibernate-mapping>

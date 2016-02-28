@@ -21,4 +21,8 @@ public class forwardAction extends ActionSupport{
 	public String bottom(){
 		return "bottom";
 	}
+	
+	public String kynamic(){
+		return "kynamic";
+	}
 }
