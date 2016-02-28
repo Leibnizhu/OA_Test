@@ -66,6 +66,12 @@ public class MenuAction extends ActionUtil<Menu>{
 		return SUCCESS;
 	}
 	
+	@JSON(serialize=false)
+	public String getMenusByCurUser(){
+		this.menuList = this.menuServ.getMenusByUser(OaUtils.getUserFromSession());
+		return SUCCESS;
+	}
+	
 	public String savePermission(){
 		//根据传回的uid获取user对象
 		User user = this.userServ.getElementById(this.uid);

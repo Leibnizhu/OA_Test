@@ -18,11 +18,30 @@ public class Menu {
 	private String icon;
 	//是否被选中
 	private Boolean isChecked;
-	
+	//URL
+	private String url;
+	//打开链接的位置
+	private String target;
+
 	//与User是多对多的关系，一个用户可以有多个菜单项(权限)，多个用户又可以共同拥有同一个权限
 	private Set<User> users;
 
 	//Setter和Getter
+	public String getTarget() {
+		return target;
+	}
+	
+	public void setTarget(String target) {
+		this.target = target;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+	
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public Long getMid() {
 		return mid;
 	}

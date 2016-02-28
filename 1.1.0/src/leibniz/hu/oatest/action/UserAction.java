@@ -11,7 +11,9 @@ import leibniz.hu.oatest.domain.User;
 import leibniz.hu.oatest.service.DepartmentService;
 import leibniz.hu.oatest.service.JobService;
 import leibniz.hu.oatest.service.UserService;
+import leibniz.hu.oatest.utils.OaUtils;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -127,5 +129,25 @@ public class UserAction extends ActionUtil<User>implements ModelDriven<User>{
 		//更新到数据库
 		this.userServ.updateElement(user);
 		return jumpAction;
+	}
+	
+	public String login(){
+		//根据当前页面传回的用户名和密码查询
+		User user = this.userServ.getUserByNameNPswd(this.getModel().getUsername(), this.getModel().getPassword());
+		if(null == user){
+			//如果查询不到，则继续返回登陆页面
+			ServletActionContext.getRequest().getSession().setAttribute("errorMsg", "用户名或密码错误，请重新输入。");
+			return "login";
+		} else {
+			//查询到，将user对象放进session并转到主页面
+			OaUtils.putUserToSession(user);
+			return "index";
+		}
+	}
+	
+	public String logout(){
+		ServletActionContext.getRequest().getSession().removeAttribute("errorMsg");
+		ServletActionContext.getRequest().getSession().removeAttribute("user");
+		return "login";
 	}
 }

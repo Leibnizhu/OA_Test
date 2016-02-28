@@ -6,4 +6,5 @@ import leibniz.hu.oatest.domain.User;
 
 public interface UserService extends GenericService<User>{
 	public Collection<User> getAllUsers();
+	public User getUserByNameNPswd(String username, String password);
 }

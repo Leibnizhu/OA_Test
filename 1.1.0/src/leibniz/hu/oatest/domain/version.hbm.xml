@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- menu的hibernate映射文件 -->
+	<class name="leibniz.hu.oatest.domain.Version" table="version">
+		<!-- 主键 -->
+		<id name="vid" type="java.lang.Long" length="8">
+			<column name="vid" ></column>
+			<generator class="increment"></generator>
+		</id>
+		<!-- 其他字段 -->
+		<property name="version" type="java.lang.Long" length="8"></property>
+		<property name="updatetime" type="java.util.Date"></property>
+		<property name="title" type="java.lang.String" length="128"></property>
+		<property name="content" type="java.lang.String" length="1024"></property>
+		<!-- 一对多关系，多的一方维护‘-->
+		<many-to-one name="kynamic" column="kid" class="leibniz.hu.oatest.domain.Kynamic"></many-to-one>
+	</class>
+</hibernate-mapping>

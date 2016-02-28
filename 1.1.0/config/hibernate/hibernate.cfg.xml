@@ -28,6 +28,8 @@
 	<mapping resource="leibniz/hu/oatest/domain/user.hbm.xml" />
 	<mapping resource="leibniz/hu/oatest/domain/job.hbm.xml" />
 	<mapping resource="leibniz/hu/oatest/domain/menu.hbm.xml" />
+	<mapping resource="leibniz/hu/oatest/domain/kynamic.hbm.xml" />
+	<mapping resource="leibniz/hu/oatest/domain/version.hbm.xml" />
 </session-factory>
 
 </hibernate-configuration>
