@@ -2,6 +2,8 @@ package leibniz.hu.oatest.domain;
 
 import java.util.Set;
 
+import org.apache.struts2.json.annotations.JSON;
+
 public class Kynamic {
 	//数据库字段
 	private Long kid;
@@ -36,6 +38,7 @@ public class Kynamic {
 	public void setIsParent(Boolean isParent) {
 		this.isParent = isParent;
 	}
+	@JSON(serialize=false)
 	public Set<Version> getVersions() {
 		return versions;
 	}

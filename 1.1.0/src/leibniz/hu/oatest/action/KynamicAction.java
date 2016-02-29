@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import leibniz.hu.oatest.domain.Kynamic;
+import leibniz.hu.oatest.domain.Version;
 import leibniz.hu.oatest.service.KynamicService;
 
 @Controller("kynamicAction")
@@ -21,6 +22,11 @@ public class KynamicAction extends ActionUtil<Kynamic>{
 	private Collection<Kynamic> menuList;
 	public Collection<Kynamic> getMenuList() {
 		return menuList;
+	}
+	
+	private Collection<Version> versionList ;
+	public Collection<Version> getVersionList() {
+		return versionList;
 	}
 
 	//用于返回查询重名的结果
@@ -69,6 +75,11 @@ public class KynamicAction extends ActionUtil<Kynamic>{
 		Kynamic kynamic = this.kynamicServ.getElementById(this.getModel().getKid());
 		kynamic.setKname(this.getModel().getKname());
 		this.kynamicServ.updateElement(kynamic);
+		return SUCCESS;
+	}
+	
+	public String getVersionsByKid(){
+		this.versionList = this.kynamicServ.getVersionsByKid(this.getModel().getKid());
 		return SUCCESS;
 	}
 }
