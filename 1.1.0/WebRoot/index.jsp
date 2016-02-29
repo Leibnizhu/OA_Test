@@ -8,10 +8,10 @@
 </HEAD>
 
 <BODY LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0 CLASS=PageBody >
-<s:form action="userAction_login.action">
+<s:form action="userAction_login.action" target="_top">
     <DIV ID="CenterAreaBg">
         <DIV ID="CenterArea">
-            <DIV ID="LogoImg"><IMG BORDER="0" SRC="css/blue/images/logo.png" /></DIV>
+            <DIV ID="LogoImg"><font size="4" color="white" ><b>OA_Test</b></font></DIV>
             <DIV ID="LoginInfo">
                 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 width=100%>
                 <tr>
@@ -26,7 +26,6 @@
                     <TR>
                         <TD CLASS="Subject"><IMG BORDER="0" SRC="css/blue/images/login/password.gif" /></TD>
                         <TD><s:password name="password" cssClass="TextField"></s:password></TD>
-                    </TR>
                 </TABLE>
             </DIV>
             <DIV ID="CopyRight"><A HREF="javascript:void(0)">&copy; 2016 All Copyrights by Leibniz.hu</A></DIV>

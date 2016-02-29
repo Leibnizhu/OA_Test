@@ -12,6 +12,8 @@ $().ready(function(){
 			$("#rightMenu").hide();
 		}
 	);
+	$("#checkin").unbind("click");
+	$("#checkin").bind("click", function(){kynamic.version.checkin();});
 });
 
 var kynamic = {
@@ -58,6 +60,32 @@ var kynamic = {
 	        				updateFile: true
 	        			});
 	        		}
+	        	},
+	        	//知识树的左击事件:显示version版本信息
+	        	click : function(event, treeid, treeNode){
+	        		//先将点击的节点放入pNode
+	        		kynamic.kynamicTree.pNode = treeNode;
+	        		//发出ajax请求查询当前节点对应的version
+	        		$.post("kynamicAction_getVersionsByKid.action", {kid : kynamic.kynamicTree.pNode.kid}, function(data){
+	        			if(0 == data.versionList.length){
+	        				//没有对应的版本信息，显示新建
+	        				kynamic.version.showVersionBox({
+	        					addVersion : true,
+	        					checkin : true,
+	        					checkout : true,
+	        					versionList : false
+	        				});
+	        			} else {
+	        				//显示版本信息及checkin checkout
+	        				kynamic.version.showVersionBox({
+	        					addVersion : true,
+	        					checkin : true,
+	        					checkout : true,
+	        					versionList : true
+	        				});
+	        				kynamic.version.showVersionList(data.versionList);
+	        			}
+	        		});
 	        	}
 	        }
 		},
@@ -250,6 +278,109 @@ var kynamic = {
 	},
 	//版本
 	version : {
-		
+		curKid : '',
+		//根据showJson传入的数据，决定显示哪些内容
+		showVersionBox : function(showJson){
+			if(showJson.addVersion){
+				$("#addVersion").show();
+			} else {
+				$("#addVersion").hide();
+			}
+			if(showJson.checkin){
+				$("#checkin").show();
+			} else {
+				$("#checkin").hide();
+			}
+			if(showJson.checkout){
+				$("#checkout").show();
+			} else {
+				$("#checkout").hide();
+			}
+			if(showJson.versionList){
+				$("#versionList").show();
+			} else {
+				$("#versionList").hide();
+			}
+		},
+		//根据ajax返回的version列表，生成table并显示
+		/*<tr>
+	    <td height="26" align="center" valign="middle" bgcolor="#FFFFFF" style="border-bottom:1px solid #f3f8fd;"><a>1</a></td>
+	    <td align="center" valign="middle" bgcolor="#FFFFFF" style="border-bottom:1px solid #f3f8fd;">2010-5-24 09:56:33</td>
+	    <td align="center" valign="middle" bgcolor="#FFFFFF" style="border-bottom:1px solid #f3f8fd;"><a>删除</a></td>
+	  </tr>*/
+		showVersionList : function(versionList){
+			//先清空原有内容，以防重复显示
+			$("#showVersion").empty();
+			for(var i = 0; i < versionList.length; i++){
+				(function(){
+					var versionObj = versionList[i];
+					//版本号的超链接
+					var $versionA = $("<a/>");
+					$versionA.text(versionObj.version);
+					$versionA.css("cursor", "pointer");
+					//绑定点击事件
+					$versionA.unbind("click");
+					$versionA.bind("click", function(){
+						alert("Title : " + versionObj.title + ".\r\nContent : " + versionObj.content);
+					});
+					
+					//版本号的单元格
+					var $versionTd = $("<td/>");
+					$versionTd.attr("height", "26").attr("align", "center").attr("valign", "middle").attr("bgcolor", "#FFFFFF").attr("style", "border-bottom:1px solid #f3f8fd;");
+					$versionTd.append($versionA);
+					//更新时间的单元格
+					var $updateTd = $("<td/>");
+					$updateTd.attr("align", "center").attr("valign", "middle").attr("bgcolor", "#FFFFFF").attr("style", "border-bottom:1px solid #f3f8fd;");
+					$updateTd.text(versionObj.updatetime);
+					//删除的超链接
+					var $delA = $("<a/>");
+					$delA.text("删除");
+					$delA.css("cursor", "pointer");
+					$delA.unbind("click");
+					$delA.bind("click", function(){
+						kynamic.version.deleteVersion(versionObj.vid, $versionTr);
+					});
+					//删除的单元格
+					var $delTd = $("<td/>");
+					$delTd.attr("align", "center").attr("valign", "middle").attr("bgcolor", "#FFFFFF").attr("style", "border-bottom:1px solid #f3f8fd;");
+					$delTd.append($delA);
+					
+					//行
+					var $versionTr = $("<tr/>");
+					$versionTr.append($versionTd);
+					$versionTr.append($updateTd);
+					$versionTr.append($delTd);
+					
+					//加入到表格
+					$("#showVersion").append($versionTr);
+				})();
+			}
+		},
+		checkin : function(){
+			$.post("versionAction_addVersion.action",
+				{title : $("#inputTitle").val(),
+				content : $("#inputContent").val(),
+				kid : 	kynamic.kynamicTree.pNode.kid}, 
+				function(data){
+					alert(data.returnMsg);
+					$.post("kynamicAction_getVersionsByKid.action", {kid : kynamic.kynamicTree.pNode.kid}, function(data2){
+						kynamic.version.showVersionList(data2.versionList);
+					});
+				}
+			);
+		},
+		showContent : function(){
+			
+		},
+		//删除一个版本
+		deleteVersion : function(vid, $versionTr){
+			if(window.confirm("确认删除？")){
+				//发出ajax请求删除版本
+				$.post("versionAction_delVersionByVid.action",{vid : vid}, function(data){
+					alert(data.returnMsg);
+					$versionTr.remove();
+				});
+			}
+		}
 	}
 };
