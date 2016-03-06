@@ -34,4 +34,10 @@
 			<ref bean="sessionFactory"/>
 		</property>
 	</bean>
+	
+	<!-- JBPM -->
+	<bean id="springHelper" class="org.jbpm.pvm.internal.processengine.SpringHelper">
+		<property name="jbpmCfg" value="jbpm/jbpm.cfg.xml"></property>
+	</bean>
+	<bean id="processEngine" factory-bean="springHelper" factory-method="createProcessEngine"></bean>
 </beans>
