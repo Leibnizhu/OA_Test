@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- Approval的hibernate映射文件 -->
+	<class name="leibniz.hu.oatest.domain.Approval" table="approval">
+		<!-- 主键 -->
+		<id name="aid" type="java.lang.Long" length="16">
+			<column name="aid"></column>
+			<generator class="increment"></generator>
+		</id>
+		<!-- 其他字段 -->
+		<property name="approver" type="java.lang.String" length="16"></property>
+		<property name="approveTime" type="java.util.Date"></property>
+		<property name="comment" type="java.lang.String" length="256"></property>
+		<property name="isAgree" type="java.lang.String" length="16"></property>
+		<!-- 多对一映射 -->
+		<many-to-one name="form" class="leibniz.hu.oatest.domain.Form" column="fid"></many-to-one>
+	</class>
+</hibernate-mapping>
