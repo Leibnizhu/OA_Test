@@ -15,4 +15,5 @@
    <include file="struts2/struts-menu.xml"/>
    <include file="struts2/struts-kynamic.xml"/>
    <include file="struts2/struts-version.xml"/>
+   <include file="struts2/struts-procdefmanager.xml"/>
 </struts>	

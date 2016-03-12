@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="procDefManager" namespace="/" extends="struts-default">
+		<action name="procDefManagerAction_*" method="{1}" class="procDefManagerAction">
+			<result name="list">/WEB-INF/jsp/workstream/formTemplateList.jsp</result>
+			<result name="jumpAction" type="redirectAction">procDefManagerAction_showLatestVersions.action</result>
+			<result name="addWeb">WEB-INF/jsp/department/add.jsp</result>
+			<result name="updateWeb">WEB-INF/jsp/department/update.jsp</result>
+			<result name="SUCCESS" type="stream"></result>
+		</action>
+	</package>
+</struts>
