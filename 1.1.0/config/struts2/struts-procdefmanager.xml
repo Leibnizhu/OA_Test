@@ -7,8 +7,8 @@
 		<action name="procDefManagerAction_*" method="{1}" class="procDefManagerAction">
 			<result name="list">/WEB-INF/jsp/workstream/formTemplateList.jsp</result>
 			<result name="jumpAction" type="redirectAction">procDefManagerAction_showLatestVersions.action</result>
-			<result name="addWeb">WEB-INF/jsp/department/add.jsp</result>
-			<result name="updateWeb">WEB-INF/jsp/department/update.jsp</result>
+			<result name="deployWeb">WEB-INF/jsp/workstream/deploy.jsp</result>
+			<result name="updateWeb">WEB-INF/jsp/workstream/update.jsp</result>
 			<result name="SUCCESS" type="stream"></result>
 		</action>
 	</package>

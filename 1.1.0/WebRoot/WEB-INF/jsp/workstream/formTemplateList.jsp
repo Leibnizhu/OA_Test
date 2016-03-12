@@ -55,7 +55,7 @@
                 <tr>
 			        <td><div class="FuncBtn">
                             <div class=FuncBtnHead></div>
-                            <div class=FuncBtnMemo><a href="deployUI.html">部署流程定义文档</a></div>
+                            <div class=FuncBtnMemo><s:a action="procDefManagerAction_deployWeb.action">部署流程定义文档</s:a></div>
                             <div class=FuncBtnTail></div>
                         </div></td>
                 </tr>

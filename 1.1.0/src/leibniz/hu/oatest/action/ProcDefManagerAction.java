@@ -50,20 +50,27 @@ public class ProcDefManagerAction extends ActionSupport {
 	}
 	
 	//以下是Action方法们
+	//显示所有流程定义（最新版本）
 	public String showLatestVersions(){
 		Collection<ProcessDefinition> procDefList = this.procDefManager.showLatestVersions();
 		ActionContext.getContext().put("procDefList", procDefList);
 		return "list";
 	}
 	
-
+	//删除流程定义
 	public String delete(){
 		this.procDefManager.deleteByPDKey(this.key);
 		return "jumpAction";
 	}
 	
+	//获取流程定义图
 	public String showImage(){
 		this.inputstream = this.procDefManager.showProcDefImg(this.deploymentId);
 		return SUCCESS;
+	}
+	
+	//跳转到部署流程定义的web
+	public String deployWeb(){
+		return "deployWeb";
 	}
 }

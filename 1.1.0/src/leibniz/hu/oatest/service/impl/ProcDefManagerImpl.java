@@ -40,7 +40,12 @@ public class ProcDefManagerImpl implements ProcDefManager {
 	}
 
 	@Override
-	public void deleteByPDKey(String key) {
-		this.procEng.getRepositoryService().deleteDeploymentCascade(key);
+	public void deleteByPDKey(String pDKey) {
+		//先得到这个key对应的所有流程定义
+		Collection<ProcessDefinition> procDefList = this.procEng.getRepositoryService().createProcessDefinitionQuery().processDefinitionKey(pDKey).list();
+		for(ProcessDefinition pd : procDefList){
+			//级联删除相关的流程实例和历史
+			this.procEng.getRepositoryService().deleteDeploymentCascade(pd.getDeploymentId());
+		}
 	}
 }
