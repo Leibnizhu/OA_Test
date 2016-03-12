@@ -1,10 +1,14 @@
 package leibniz.hu.oatest.service.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipInputStream;
 
 import javax.annotation.Resource;
 
@@ -35,7 +39,7 @@ public class ProcDefManagerImpl implements ProcDefManager {
 
 	@Override
 	public InputStream showProcDefImg(String deploymentId) {
-		ProcessDefinition procDef = this.procEng.getRepositoryService().createProcessDefinitionQuery().processDefinitionId(deploymentId).uniqueResult();
+		ProcessDefinition procDef = this.procEng.getRepositoryService().createProcessDefinitionQuery().deploymentId(deploymentId).uniqueResult();
 		return this.procEng.getRepositoryService().getResourceAsStream(deploymentId, procDef.getImageResourceName());
 	}
 
@@ -46,6 +50,16 @@ public class ProcDefManagerImpl implements ProcDefManager {
 		for(ProcessDefinition pd : procDefList){
 			//级联删除相关的流程实例和历史
 			this.procEng.getRepositoryService().deleteDeploymentCascade(pd.getDeploymentId());
+		}
+	}
+
+	@Override
+	public void deploy(File uploadZipFile) {
+		try {
+			ZipInputStream zis = new ZipInputStream(new FileInputStream(uploadZipFile));
+			this.procEng.getRepositoryService().createDeployment().addResourcesFromZipInputStream(zis).deploy();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 }

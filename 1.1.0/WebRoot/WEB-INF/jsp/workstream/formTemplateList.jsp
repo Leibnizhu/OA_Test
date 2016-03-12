@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="text/javascript">
 	     function showProcDefImg( deploymentId ){
-           window.open("procDefManagerAction_showImage.action?deploymentId=" + deploymentId);
+           window.open("procDefManagerAction_showImage.action?deploymentId=" + deploymentId, 500, 500);
         }
     </script> 
 </head>

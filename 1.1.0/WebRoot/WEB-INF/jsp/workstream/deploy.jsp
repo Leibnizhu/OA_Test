@@ -20,9 +20,8 @@
 
 <!--显示表单内容-->
 <div id=MainArea>
-    <s:form action="pdManagerAction_deploy.action" enctype="multipart/form-data">
-        <div class="ItemBlock_Title1"><!-- 信息说明<DIV CLASS="ItemBlock_Title1">
-        	<IMG BORDER="0" WIDTH="4" HEIGHT="7" SRC="${pageContext.request.contextPath}/css/blue/images/item_point.gif" /> 部署流程定义 </DIV>  -->
+    <s:form action="procDefManagerAction_deploy.action" enctype="multipart/form-data">
+        <div class="ItemBlock_Title1">
         </div>
         
         <!-- 表单内容显示 -->
@@ -31,7 +30,7 @@
                 <table cellpadding="0" cellspacing="0" class="mainForm">
                     <tr>
 						<td>请选择流程定义文档(zip格式)</td>
-                        <td><s:file name="resource" cssClass="InputStyle"></s:file></td>
+                        <td><s:file name="procDefZip" cssClass="InputStyle"></s:file></td>
                     </tr>
                 </table>
             </div>

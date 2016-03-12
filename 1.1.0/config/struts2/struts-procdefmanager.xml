@@ -9,7 +9,7 @@
 			<result name="jumpAction" type="redirectAction">procDefManagerAction_showLatestVersions.action</result>
 			<result name="deployWeb">WEB-INF/jsp/workstream/deploy.jsp</result>
 			<result name="updateWeb">WEB-INF/jsp/workstream/update.jsp</result>
-			<result name="SUCCESS" type="stream"></result>
+			<result type="stream"></result>
 		</action>
 	</package>
 </struts>
