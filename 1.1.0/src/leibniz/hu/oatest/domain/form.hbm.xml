@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- Form的hibernate映射文件 -->
+	<class name="leibniz.hu.oatest.domain.Form" table="form">
+		<!-- 主键 -->
+		<id name="fid" type="java.lang.Long" length="16">
+			<column name="fid"></column>
+			<generator class="increment"></generator>
+		</id>
+		<!-- 其他字段 -->
+		<property name="applicant" type="java.lang.String" length="16"></property>
+		<property name="approveTime" type="java.util.Date"></property>
+		<property name="state" type="java.lang.String" length="16"></property>
+		<property name="title" type="java.lang.String" length="32"></property>
+		<!-- 多对一映射 -->
+		<many-to-one name="formTemplate" class="leibniz.hu.oatest.domain.FormTemplate" column="tfid"></many-to-one>
+		<!-- 一对多映射 -->
+		<set name="approvals" inverse="true">
+			<key>
+				<column name="fid"></column>
+			</key>
+			<one-to-many class="leibniz.hu.oatest.domain.Approval"/>
+		</set>
+	</class>
+</hibernate-mapping>
