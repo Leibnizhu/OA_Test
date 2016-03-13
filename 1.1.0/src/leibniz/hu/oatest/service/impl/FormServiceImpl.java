@@ -16,8 +16,11 @@ import org.jbpm.api.task.Task;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import leibniz.hu.oatest.dao.ApprovalDao;
 import leibniz.hu.oatest.dao.FormDao;
 import leibniz.hu.oatest.dao.FormTemplateDao;
+import leibniz.hu.oatest.dao.GenericDao;
+import leibniz.hu.oatest.domain.Approval;
 import leibniz.hu.oatest.domain.Form;
 import leibniz.hu.oatest.domain.FormTemplate;
 import leibniz.hu.oatest.domain.TaskView;
@@ -28,11 +31,17 @@ import leibniz.hu.oatest.utils.UploadUtils;
 
 @Service("formService")
 public class FormServiceImpl extends GenericServiceImpl<Form> implements FormService{
+	
 	@Resource(name="formDao")
-	private FormDao formDao;
+	public void initDao(GenericDao<Form> dao){
+		super.dao = dao;
+	}
 	
 	@Resource(name="formTemplateDao")
 	private FormTemplateDao ftDao;
+	
+	@Resource(name="approvalDao")
+	private ApprovalDao approvalDao;
 	
 	@Resource(name="processEngine")
 	private ProcessEngine procEng;
@@ -57,7 +66,7 @@ public class FormServiceImpl extends GenericServiceImpl<Form> implements FormSer
 		form.setTitle(ft.getFtname() + "_" + user.getUsername() + "_" + sdf.format(curDate));
 		form.setFormTemplate(ft);
 		//往form表插入数据
-		this.formDao.saveElement(form);
+		((FormDao)super.dao).saveElement(form);
 		
 		//JBPM操作
 		//设置流程变量，form
@@ -88,6 +97,33 @@ public class FormServiceImpl extends GenericServiceImpl<Form> implements FormSer
 			taskViewList.add(taskView);
 		}
 		return taskViewList;
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public void approve(String taskId, Approval approval) {
+		//先获取Task
+		Task task = this.procEng.getTaskService().getTask(taskId);
+		if("不同意".equals(approval.getIsAgree())){
+			//不同意，则流程直接结束
+			this.procEng.getExecutionService().endProcessInstance(task.getExecutionId(), "ended");
+			//form对象的状态也相应改成"未通过"
+			approval.getForm().setState("未通过");
+		} else if("同意".equals(approval.getIsAgree())){
+			//若同意，则先完成当前任务
+			this.procEng.getTaskService().completeTask(taskId);
+			//再获取当前的流程实例
+			ProcessInstance pi = this.procEng.getExecutionService().createProcessInstanceQuery().processInstanceId(task.getExecutionId()).uniqueResult();
+			if(null == pi){
+				//若原流程实例为空，即前面完成task之后，关闭了流程实例，即流程实例已完成，应修改form的状态
+				approval.getForm().setState("已通过");
+			}
+		} else {
+			//页面返回只能是"同意"或者"不同意"，其他一概忽略
+			return;
+		}
+		//如果有正确的isAgree，则保存approval
+		this.approvalDao.saveElement(approval);
 	}
 	
 }

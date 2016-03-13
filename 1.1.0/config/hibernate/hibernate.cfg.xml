@@ -7,9 +7,7 @@
 <hibernate-configuration>
 
 <session-factory>
-	<property name="dialect">
-		org.hibernate.dialect.MySQLDialect
-	</property>
+	<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
 	<!-- ?useUnicode=true&amp;amp;characterEncoding=UTF-8 -->
 	<property name="connection.url">
 		jdbc:mysql://192.168.56.101:3306/oatest?useUnicode=true&amp;characterEncoding=UTF-8
