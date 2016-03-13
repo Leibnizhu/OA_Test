@@ -5,10 +5,9 @@
 <struts>
 	<package name="procDefManager" namespace="/" extends="struts-default">
 		<action name="procDefManagerAction_*" method="{1}" class="procDefManagerAction">
-			<result name="list">/WEB-INF/jsp/workstream/formTemplateList.jsp</result>
+			<result name="list">/WEB-INF/jsp/workstream/pdList.jsp</result>
 			<result name="jumpAction" type="redirectAction">procDefManagerAction_showLatestVersions.action</result>
-			<result name="deployWeb">WEB-INF/jsp/workstream/deploy.jsp</result>
-			<result name="updateWeb">WEB-INF/jsp/workstream/update.jsp</result>
+			<result name="addWeb">WEB-INF/jsp/workstream/deploy.jsp</result>
 			<result type="stream"></result>
 		</action>
 	</package>

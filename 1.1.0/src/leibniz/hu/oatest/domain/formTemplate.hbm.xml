@@ -13,7 +13,7 @@
 		<!-- 其他字段 -->
 		<property name="ftname" type="java.lang.String" length="32"></property>
 		<property name="procDefKey" type="java.lang.String" length="32"></property>
-		<property name="url" type="java.lang.String" length="128"></property>
+		<property name="url" type="java.lang.String" length="512"></property>
 		<!-- 一对多映射 -->
 		<set name="forms" inverse="true">
 			<key>
