@@ -9,6 +9,12 @@
 			<result name="jumpAction" type="redirectAction">formTemplateAction_showAllList.action</result>
 			<result name="addWeb">WEB-INF/jsp/workstream/formTemplate_addWeb.jsp</result>
 			<result name="updateWeb">WEB-INF/jsp/workstream/update.jsp</result>
+			<result type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					attachment;filename="${#fileName}.doc"
+				</param>
+			</result>
 		</action>
 	</package>
 </struts>

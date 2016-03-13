@@ -27,8 +27,17 @@ public class FormTemplateAction extends ActionUtil<FormTemplate>{
 	@Resource(name="procDefManager")
 	private ProcDefManager pdManager;
 	
+	//用于上传模板
 	private File resource;
+	//用于下载模板
+	private Object inputStream;
 	
+	public Object getInputStream() {
+		return inputStream;
+	}
+	public void setInputStream(Object inputStream) {
+		this.inputStream = inputStream;
+	}
 	public File getResource() {
 		return resource;
 	}
@@ -51,5 +60,10 @@ public class FormTemplateAction extends ActionUtil<FormTemplate>{
 	public String add(){
 		this.formTemplateServ.saveFormTemplate(this.getModel(), resource);
 		return jumpAction;
+	}
+	
+	public String download(){
+		this.inputStream = this.formTemplateServ.download(this.getModel().getFtid());
+		return SUCCESS;
 	}
 }
