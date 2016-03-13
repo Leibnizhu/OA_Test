@@ -17,4 +17,5 @@
    <include file="struts2/struts-version.xml"/>
    <include file="struts2/struts-procdefmanager.xml"/>
    <include file="struts2/struts-formTemplate.xml"/>
+   <include file="struts2/struts-form.xml"/>
 </struts>	

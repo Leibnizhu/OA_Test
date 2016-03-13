@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="form" namespace="/" extends="struts-default">
+		<action name="formAction_*" method="{1}" class="formAction">
+			<result name="ft_list">WEB-INF/jsp/workstream/workStream_ftList.jsp</result>
+			<result name="jumpAction" type="redirectAction">formAction_listAllFormTemplatele.action</result>
+			<result name="submitWeb">WEB-INF/jsp/workstream/submitWeb.jsp</result>
+			<result name="curTasksList">WEB-INF/jsp/workstream/curTasksList.jsp</result>
+		</action>
+	</package>
+</struts>

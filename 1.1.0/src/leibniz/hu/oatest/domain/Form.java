@@ -12,7 +12,16 @@ public class Form implements Serializable{
 	private String applicant;
 	private Date approveTime;
 	private String state;
+	private String url;
 	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	//与审批是一对多的关系
 	private Set<Approval> approvals;
 	//与申请单模板是多对一的关系

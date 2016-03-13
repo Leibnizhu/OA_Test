@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import leibniz.hu.oatest.domain.FormTemplate;
 import leibniz.hu.oatest.service.FormTemplateService;
 import leibniz.hu.oatest.service.ProcDefManager;
-import leibniz.hu.oatest.utils.UploadUtils;
 
 import org.jbpm.api.ProcessDefinition;
 import org.springframework.context.annotation.Scope;
