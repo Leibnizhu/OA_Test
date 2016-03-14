@@ -15,6 +15,7 @@
 		<property name="approveTime" type="java.util.Date"></property>
 		<property name="state" type="java.lang.String" length="16"></property>
 		<property name="title" type="java.lang.String" length="32"></property>
+		<property name="url" type="java.lang.String" length="512"></property>
 		<!-- 多对一映射 -->
 		<many-to-one name="formTemplate" class="leibniz.hu.oatest.domain.FormTemplate" column="tfid"></many-to-one>
 		<!-- 一对多映射 -->

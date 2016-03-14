@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="formTemplate" namespace="/" extends="struts-default">
+		<action name="formTemplateAction_*" method="{1}" class="formTemplateAction">
+			<result name="list">WEB-INF/jsp/workstream/formTemplateList.jsp</result>
+			<result name="jumpAction" type="redirectAction">formTemplateAction_showAllList.action</result>
+			<result name="addWeb">WEB-INF/jsp/workstream/formTemplate_addWeb.jsp</result>
+			<result name="updateWeb">WEB-INF/jsp/workstream/update.jsp</result>
+			<result type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					attachment;filename="${#fileName}.doc"
+				</param>
+			</result>
+		</action>
+	</package>
+</struts>
